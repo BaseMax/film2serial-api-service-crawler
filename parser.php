@@ -127,7 +127,12 @@ $page=$service->countPage($input);
 print "Page: ".$page."\n";
 //$page=10;
 for($i=1;$i<=$page;$i++) {
-	$links=$service->parsePage($i, $input);
+	if($i == 1) {
+		$links=$service->parsePage($i, $input);
+	}
+	else {
+		$links=$service->parsePage($i);
+	}
 	print_r($links);
 	foreach($links as $link) {
 		$post=$service->parsePost($link);
