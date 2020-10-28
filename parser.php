@@ -1,6 +1,16 @@
 <?php
+// Max Base
+// film2serial-api-service-crawler
+require "phpedb.php";
+
+$db=new database();
+$db->connect("localhost","yefilm_site","4f9S0c3VoCani8RL");
+$db->db="yefilm_site";
+$db->create_database($db->db, false);
+
 class Film2Serial {
 
+	// Why as a function? Because maybe i want to set a interface and extends...
 	public function linkHome() {
 		return "https://www.film2serial.ir/";
 	}
@@ -53,6 +63,28 @@ class Film2Serial {
 		if(is_array($splitContext) and count($splitContext) >= 2) {
 			$context=$splitContext[0];
 			$moreContext=$splitContext[1];
+		}
+		foreach($categories as $i=>$category) {
+			$clauses=["name"=>$category];
+			if($db->count("sld_category", $clauses) == 0) {
+				$newID=$db->insert("sld_category", $clauses);
+				$categories[$i]=$newID;
+			}
+			else {
+				$find=$db->select("sld_category", $clauses, "", "id");
+				if($find == null || $find == []) {
+					unset($categories[$i]);
+				}
+				else {
+					$categories[$i]=$find["id"];
+				}
+			}
+		}
+		if($categories != []) {
+			$categories=implode(",", $categories);
+		}
+		else {
+			$categories="";
 		}
 		return [
 			"title"=>$title,
