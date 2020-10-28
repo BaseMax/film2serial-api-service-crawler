@@ -28,6 +28,7 @@ class Film2Serial {
 	}
 
 	public function parsePost($link, $input=null) {
+		global $db;
 		if($input == null) {
 			$input=file_get_contents($link);
 		}
@@ -87,11 +88,13 @@ class Film2Serial {
 			$categories="";
 		}
 		return [
+			"autor"=>"admin-shop",
 			"title"=>$title,
-			"short"=>$context,
-			"context"=>$moreContext,
-			"categories"=>$categories,
-			"keyword"=>$keyword,
+			"short_story"=>$context,
+			"descr"=>$context,
+			"full_story"=>$moreContext,
+			"category"=>$categories,
+			"keywords"=>$keyword,
 		];
 	}
 
@@ -117,6 +120,9 @@ for($i=1;$i<=$page;$i++) {
 	foreach($links as $link) {
 		$post=$service->parsePost($link);
 		print_r($post);
+		if($post !== []) {
+			$db->insert("sld_post", $post);
+		}
 	}
 }
 /*
