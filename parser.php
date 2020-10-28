@@ -1,10 +1,12 @@
 <?php
 // Max Base
 // film2serial-api-service-crawler
+ini_set('max_execution_time', 0);
+set_time_limit(0);
 require "phpedb.php";
 
 $db=new database();
-$db->connect("localhost","yefilm_site","4f9S0c3VoCani8RL");
+$db->connect("localhost", "yefilm_site", "****");
 $db->db="yefilm_site";
 $db->create_database($db->db, false);
 
@@ -68,6 +70,8 @@ class Film2Serial {
 		foreach($categories as $i=>$category) {
 			$clauses=["name"=>$category];
 			if($db->count("sld_category", $clauses) == 0) {
+			    $clauses["keywords"]="";
+			    $clauses["fulldescr"]="";
 				$newID=$db->insert("sld_category", $clauses);
 				$categories[$i]=$newID;
 			}
@@ -87,15 +91,22 @@ class Film2Serial {
 		else {
 			$categories="";
 		}
-		return [
-			"autor"=>"admin-shop",
-			"title"=>$title,
-			"short_story"=>$context,
-			"descr"=>$context,
-			"full_story"=>$moreContext,
-			"category"=>$categories,
-			"keywords"=>$keyword,
-		];
+		$count=$db->count("sld_post", ["title"=>$title]);
+		var_dump($count);
+		if($count == 0) {
+    		return [
+    		    "xfields"=>"",
+    			"autor"=>"admin-shop",
+    			"title"=>$title,
+    			"alt_name"=>str_replace("--", "-", str_replace(" ", "-", $title)),
+    			"short_story"=>$context,
+    			"descr"=>substr_replace(($context), "...", 299),
+    			"full_story"=>$moreContext,
+    			"category"=>$categories,
+    			"keywords"=>$keyword,
+    		];
+		}
+		return [];
 	}
 
 	function countPage($input=null) {
@@ -114,6 +125,7 @@ $service=new Film2Serial();
 $input=file_get_contents($service->linkHome());
 $page=$service->countPage($input);
 print "Page: ".$page."\n";
+//$page=10;
 for($i=1;$i<=$page;$i++) {
 	$links=$service->parsePage($i, $input);
 	print_r($links);
