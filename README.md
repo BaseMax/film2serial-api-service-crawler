@@ -2,7 +2,9 @@
 
 Crawling content and Movies of a Persian site using PHP. 
 
-Run daily or every hours:
+---------
+
+Modify `config.php` file and Run daily or every hours crawler update:
 
 ```
 php importer.php
