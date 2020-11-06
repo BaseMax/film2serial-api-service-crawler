@@ -8,6 +8,12 @@ Run daily or every hours:
 php importer.php
 ```
 
+This crawler is designed to automatically update the database.
+But this will require a **DataLife Engine** CMS. Something that is not available for free.
+https://dle-news.com/
+
+If you want to use a crawler without this CMS(DataLife). You can look at the [parser-test.php](parser-test.php) file.
+
 ### Cron Jobs
 
 | Minute | Hour | Day | Month | Weekday | Command |
