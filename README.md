@@ -31,6 +31,10 @@ or
 0	*	*	*	*	/usr/local/bin/ea-php74 /home/hostName/public_html/folder-test/importer.php
 ```
 
+### TODO
+
+There is a problem with set categories for posts that I do not yet know the exact cause. But editing each category manually solves this to some extent.
+
 ---------
 
 # Max Base
