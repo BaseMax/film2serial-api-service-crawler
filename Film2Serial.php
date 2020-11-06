@@ -8,6 +8,8 @@
 
 require "NetPHP.php";
 require "phpedb.php";
+
+$db=new database();
 require "config.php";
 // use \Datetime;
 
