@@ -10,12 +10,6 @@ php importer.php
 
 This crawler is designed to automatically update the database.
 But this will require a **DataLife Engine** CMS. Something that is not available for free. (Free trial has limitation)
-https://dle-news.com/
-
-#### Download the trial version: Download DataLife Engine
-
-- https://dle-news.com/demo.html
-- https://dle-news.com/price.html
 
 If you want to use a crawler without this CMS(DataLife). You can look at the [parser-test.php](parser-test.php) file.
 
@@ -34,6 +28,18 @@ or
 ### TODO
 
 There is a problem with set categories for posts that I do not yet know the exact cause. But editing each category manually solves this to some extent.
+
+
+### DataLife Engine
+
+DataLife Engine (DLE) — a content management system.
+
+https://dle-news.com/
+
+#### Download the trial version: Download DataLife Engine
+
+- https://dle-news.com/demo.html
+- https://dle-news.com/price.html
 
 ---------
 
