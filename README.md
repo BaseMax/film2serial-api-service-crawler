@@ -2,6 +2,24 @@
 
 film2serial-api-service-crawler
 
+Run daily or every hours:
+
+```
+php importer.php
+```
+
+### Cron Jobs
+
+| Minute | Hour | Day | Month | Weekday | Command |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| 0 | * |	* |	* |	* |	/usr/local/bin/ea-php74 /home/hostName/public_html/folder-test/importer.php |
+
+```
+0	*	*	*	*	/usr/local/bin/php /home/hostName/public_html/folder-test/importer.php
+or
+0	*	*	*	*	/usr/local/bin/ea-php74 /home/hostName/public_html/folder-test/importer.php
+```
+
 ---------
 
 # Max Base
