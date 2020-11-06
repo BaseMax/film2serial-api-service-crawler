@@ -1,6 +1,6 @@
 # film2serial API Service Crawler
 
-film2serial-api-service-crawler
+Crawling content and Movies of a Persian site using PHP. 
 
 Run daily or every hours:
 
